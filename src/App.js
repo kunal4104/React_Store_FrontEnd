@@ -11,6 +11,7 @@ import Home from './components/Home';
 import Profile from './components/Profile';
 import BoardUser from './components/BoardUser';
 import Cart from './components/Cart';
+import Admin from './components/Admin';
 import { CartContext } from './components/CartContext';
 
 const App = () => {
@@ -115,6 +116,7 @@ const App = () => {
           <Route exact path="/profile" component={Profile} />
           <Route path="/user" component={BoardUser} />
           <Route path="/cart" component={Cart} />
+          <Route path="/admin" component={Admin} />
         </Switch>
         {/* <Route path="/mod" component={BoardModerator} /> */}
         {/* <Route path="/admin" component={BoardAdmin} /> */}
