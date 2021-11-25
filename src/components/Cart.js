@@ -32,7 +32,7 @@ export default function Cart() {
           </div>
           {cart.length === 0 && <div> Cart is Empty</div>}
           {cart.map((item) => (
-            <CartItem Product={item} />
+            <CartItem key={item._id} Product={item} />
           ))}
           {/* <div class="row">
                             <div class="row main align-items-center">
