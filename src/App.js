@@ -10,10 +10,12 @@ import Register from './components/Register';
 import Home from './components/Home';
 import Profile from './components/Profile';
 import BoardUser from './components/BoardUser';
-import BoardAdmin from './components/BoardAdmin';
+import BoardAdmin from './components/Admin/BoardAdmin';
+import EditProduct from './components/Admin/EditProduct';
 import Cart from './components/Cart';
 import { CartContext } from './components/CartContext';
 import ProductDetail from './components/ProductDetail';
+import CreateProduct from './components/Admin/CreateProduct';
 
 const App = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
@@ -119,9 +121,21 @@ const App = () => {
           <Route path="/user" component={BoardUser} />
           <Route path="/cart" component={Cart} />
           <Route path="/product/:id" component={ProductDetail} />
+          {showAdminBoard && [
+            <Route
+              key="edit"
+              path="/edit/product/:id"
+              component={EditProduct}
+            />,
+            <Route
+              key="edit"
+              path="/create/product"
+              component={CreateProduct}
+            />,
+            <Route key="Admin" path="/admin" component={BoardAdmin} />,
+          ]}
         </Switch>
         {/* <Route path="/mod" component={BoardModerator} /> */}
-        <Route path="/admin" component={BoardAdmin} />
       </div>
     </div>
   );

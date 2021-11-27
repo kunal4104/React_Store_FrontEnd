@@ -1,0 +1,6 @@
+{
+    "prettier.withNodeModules": true,
+    "prettier.resolveGlobalModules": true,
+    "editor.formatOnSave": true,
+    "eslint.run": "onSave"
+}

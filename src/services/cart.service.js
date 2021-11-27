@@ -38,7 +38,6 @@ const onRemove = (cartItems, setCartItems, product) => {
       )
     );
   }
-  console.log('here');
 };
 
 const removeAll = (cartItems, setCartItems, product) => {
