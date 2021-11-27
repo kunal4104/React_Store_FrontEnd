@@ -6,6 +6,8 @@ const API_URL = 'http://localhost:8000/api/v1/products/';
 
 const getPublicContent = () => axios.get(`${API_URL}?active=true`);
 
+const getProduct = (id) => axios.get(`${API_URL}${id}`);
+
 const getUserBoard = () => axios.get(`${API_URL}`, { headers: authHeader() });
 
 const getAdminBoard = () => axios.get(`${API_URL}`, { headers: authHeader() });
@@ -13,5 +15,6 @@ const getAdminBoard = () => axios.get(`${API_URL}`, { headers: authHeader() });
 export default {
   getPublicContent,
   getUserBoard,
+  getProduct,
   getAdminBoard,
 };

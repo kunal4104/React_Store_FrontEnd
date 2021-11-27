@@ -10,8 +10,12 @@ import Register from './components/Register';
 import Home from './components/Home';
 import Profile from './components/Profile';
 import BoardUser from './components/BoardUser';
+import BoardAdmin from './components/Admin/BoardAdmin';
+import EditProduct from './components/Admin/EditProduct';
 import Cart from './components/Cart';
 import { CartContext } from './components/CartContext';
+import ProductDetail from './components/ProductDetail';
+import CreateProduct from './components/Admin/CreateProduct';
 
 const App = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
@@ -26,7 +30,7 @@ const App = () => {
     if (user) {
       setCurrentUser(user);
       setShowModeratorBoard(user.role === 'moderator');
-      setShowAdminBoard(user.role === 'admin');
+      setShowAdminBoard(user.user.role === 'admin');
     }
   }, []);
 
@@ -54,7 +58,6 @@ const App = () => {
               </Link>
             </li>
           )}
-
           {showAdminBoard && (
             <li className="nav-item">
               <Link to="/admin" className="nav-link">
@@ -79,11 +82,13 @@ const App = () => {
                 {currentUser.username}
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to="/cart" className="nav-link">
-                Cart {cart.length}
-              </Link>
-            </li>
+            {!showAdminBoard && (
+              <li className="nav-item">
+                <Link to="/cart" className="nav-link">
+                  Cart {cart.length}
+                </Link>
+              </li>
+            )}
             <li className="nav-item">
               <a href="/login" className="nav-link" onClick={logOut}>
                 Logout
@@ -115,9 +120,22 @@ const App = () => {
           <Route exact path="/profile" component={Profile} />
           <Route path="/user" component={BoardUser} />
           <Route path="/cart" component={Cart} />
+          <Route path="/product/:id" component={ProductDetail} />
+          {showAdminBoard && [
+            <Route
+              key="edit"
+              path="/edit/product/:id"
+              component={EditProduct}
+            />,
+            <Route
+              key="edit"
+              path="/create/product"
+              component={CreateProduct}
+            />,
+            <Route key="Admin" path="/admin" component={BoardAdmin} />,
+          ]}
         </Switch>
         {/* <Route path="/mod" component={BoardModerator} /> */}
-        {/* <Route path="/admin" component={BoardAdmin} /> */}
       </div>
     </div>
   );

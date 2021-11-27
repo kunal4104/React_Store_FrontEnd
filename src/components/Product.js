@@ -4,6 +4,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/prop-types */
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { CartContext } from './CartContext';
 import CartServices from '../services/cart.service';
 
@@ -40,7 +41,9 @@ const Product = (props) => {
           </ul>
         </div>
         <div className="part-2">
-          <h3 className="product-title">{product.title}</h3>
+          <h3 className="product-title">
+            <Link to={`/product/${product._id}`}> {product.title} </Link>
+          </h3>
           <h4 className="product-old-price">$79.99</h4>
           <h4 className="product-price">
             &#36;{product.price / parseFloat(100)}

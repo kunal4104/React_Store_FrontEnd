@@ -23,7 +23,7 @@ const onAdd = (cartItems, setCartItems, product) => {
 const onRemove = (cartItems, setCartItems, product) => {
   const exist = cartItems.find((x) => x._id === product._id);
 
-  if (exist.qty === 1) {
+  if (exist && exist.qty === 1) {
     setCartItems(cartItems.filter((x) => x._id !== product._id));
   } else {
     setCartItems(
