@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
+import { Dropdown } from 'react-bootstrap';
 import Product from './Product';
 import ProductStyle from './ProductStyle';
 
@@ -9,6 +10,7 @@ import UserService from '../services/user.service';
 const Home = () => {
   const [content, setContent] = useState([]);
   const [page, setPage] = useState(1);
+  const [filter, setFilter] = useState('All');
 
   useEffect(() => {
     UserService.getPublicContent(page).then(
@@ -27,9 +29,9 @@ const Home = () => {
     );
   }, []);
 
-  const loadPage = (newPage) => {
+  const loadPage = (newPage, currentFilter) => {
     if (newPage > 0) {
-      UserService.getPublicContent(newPage).then(
+      UserService.getPublicContent(newPage, currentFilter).then(
         (response) => {
           // eslint-disable-next-line no-undef
           const element = document.getElementById('next');
@@ -53,6 +55,27 @@ const Home = () => {
     }
   };
 
+  const handleFilter = (event) => {
+    const { target } = event;
+    setFilter(target.name);
+    setPage(1);
+    // loadPage(page, filter);
+    UserService.getPublicContent(page, target.name).then(
+      (response) => {
+        // eslint-disable-next-line no-undef
+        setContent(response.data.data.data);
+      },
+      (error) => {
+        const _content =
+          (error.response && error.response.data) ||
+          error.message ||
+          error.toString();
+
+        setContent(_content);
+      }
+    );
+  };
+
   return (
     <section className="section-products">
       <ProductStyle />
@@ -60,8 +83,58 @@ const Home = () => {
         <div className="row justify-content-center text-center">
           <div className="col-md-8 col-lg-6">
             <div className="header">
+              {/* <Form>
+                <Form.Group className="mb-3" controlId="search">
+                  <Form.Label>Search</Form.Label>
+                  <Form.Control type="search" placeholder="Search" />
+                  <Button onClick={(event) => handleSearch(event)}>
+                    Search
+                  </Button>
+                </Form.Group>
+              </Form> */}
               <h3>Featured Product</h3>
               <h2>Popular Products</h2>
+              <Dropdown>
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                  {filter}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item
+                    name="All"
+                    onClick={(event) => handleFilter(event)}
+                  >
+                    All
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    name="Bedroom"
+                    onClick={(event) => handleFilter(event)}
+                  >
+                    Bedroom
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    name="Living"
+                    onClick={(event) => handleFilter(event)}
+                  >
+                    Living
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    name="Kitchen"
+                    onClick={(event) => handleFilter(event)}
+                  >
+                    Kitchen
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    name="Study"
+                    onClick={(event) => handleFilter(event)}
+                  >
+                    Study
+                  </Dropdown.Item>
+                  {/* <Dropdown.Item onClick={(event) => resetProducts(event)}>
+                    All
+                  </Dropdown.Item> */}
+                </Dropdown.Menu>
+              </Dropdown>
             </div>
           </div>
         </div>
@@ -78,7 +151,7 @@ const Home = () => {
               type="button"
               className="page-link"
               onClick={() => {
-                loadPage(page - 1);
+                loadPage(page - 1, filter);
               }}
               tabIndex="-1"
             >
@@ -104,7 +177,7 @@ const Home = () => {
             <button
               type="button"
               onClick={() => {
-                loadPage(page + 1);
+                loadPage(page + 1, filter);
               }}
               className="page-link"
               href="#"
