@@ -150,7 +150,17 @@ a:hover {
     background: url("https://i.ibb.co/clnzjns/2.jpg") no-repeat center;
     background-size: cover; 
 } */
+.Nav{
+  color: white;
+}
+.nav-dropdown1{
+  color: white;
+}
 
+.button-class{
+  background-color: black;
+  width: 10%;
+}
 .section-products .single-product .part-1 .discount,
 .section-products .single-product .part-1 .new {
     position: absolute;

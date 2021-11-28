@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
+//import axios from 'axios';
+// Form, FormControl, Button } from 'react-bootstrap';
+//import { Search } from 'react-bootstrap-icons';
 import './bootstrap/css/bootstrap.min.css';
 import './App.css';
-
 import AuthService from './services/auth.service';
-
 import Login from './components/Login';
 import Register from './components/Register';
 import Home from './components/Home';
@@ -21,6 +22,8 @@ const App = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
+  // const [allData, setAllData] = useState([]);
+  // const [setFilteredData] = useState(allData);
 
   const [cart] = useContext(CartContext);
 
@@ -32,7 +35,27 @@ const App = () => {
       setShowModeratorBoard(user.role === 'moderator');
       setShowAdminBoard(user.user.role === 'admin');
     }
+
+    // axios('http://localhost:8000/api/v1/products/')
+    //   .then((response) => {
+    //     console.log(response.data);
+    //     setAllData(response.data);
+    //     setFilteredData(response.data);
+    //   })
+    //   .catch((error) => {
+    //     console.log('Error getting fake data: ', error);
+    //   });
   }, []);
+
+  // const handleSearch = (event) => {
+  //   let value = event.target.value.toLowerCase();
+  //   let result = [];
+  //   console.log(value);
+  //   result = allData.filter((data) => {
+  //   return data.title.search(value) != -1;
+  //   });
+  //   setFilteredData(result);
+  // }
 
   const logOut = () => {
     AuthService.logout();
@@ -50,7 +73,6 @@ const App = () => {
               Home
             </Link>
           </li>
-
           {showModeratorBoard && (
             <li className="nav-item">
               <Link to="/mod" className="nav-link">
@@ -74,7 +96,6 @@ const App = () => {
             </li>
           )}
         </div>
-
         {currentUser ? (
           <div className="navbar-nav ml-auto">
             <li className="nav-item">
