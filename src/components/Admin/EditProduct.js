@@ -19,6 +19,7 @@ const EditProduct = (props) => {
       UserService.getProduct(id).then(
         (response) => {
           const { data } = response.data.data;
+          data.price /= 100;
           setUpdated(data);
           setProduct(data);
         },
@@ -39,7 +40,7 @@ const EditProduct = (props) => {
 
     const data = new FormData();
     data.append('title', Updated.title);
-    data.append('price', Updated.price);
+    data.append('price', Updated.price * 100);
     data.append('description', Updated.description);
     data.append('category', Updated.category);
     data.append('size', Updated.size);

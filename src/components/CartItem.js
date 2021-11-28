@@ -62,7 +62,7 @@ export default function cartItem(props) {
           </button>
         </div>
         <div className="col">
-          &#36;{Product.total}
+          &#36;{Product.total.toFixed(2)}
           <span
             className="close"
             onClick={() => {

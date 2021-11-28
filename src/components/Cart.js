@@ -74,7 +74,7 @@ export default function Cart() {
             <div className="col" style={{ paddingLeft: '0' }}>
               ITEMS {cart.length}
             </div>
-            <div className="col text-right">&#36;{cartTotal}</div>
+            <div className="col text-right">&#36;{cartTotal.toFixed(2)}</div>
           </div>
           <form>
             <p>SHIPPING</p>
@@ -91,7 +91,7 @@ export default function Cart() {
           >
             <div className="col">TOTAL PRICE</div>
             <div className="col text-right">
-              &#36;{cartTotal + (cart.length > 0 ? 5 : 0)}
+              &#36;{(cartTotal + (cart.length > 0 ? 5 : 0)).toFixed(2)}
             </div>
           </div>
           <button type="button" className="btn">
