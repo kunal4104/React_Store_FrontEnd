@@ -9,33 +9,13 @@ import UserService from '../services/user.service';
 const Home = () => {
   const [content, setContent] = useState([]);
   const [globalContent, setGlobalContent] = useState([]);
-  // const [categoricalData, setCategoricalData] = useState(content);
-  // const [filteredData, setFilteredData] = useState(categoricalData);
-  //   const { onAdd } = props;
-  //   const [cartItems, setCartItems] = useState([]);
-
-  //   const onAdd = (product) => {
-  //     const exist = cartItems.find((x) => x._id === product._id);
-  //     console.log(product);
-  //     console.log(exist);
-  //     if (exist) {
-  //       setCartItems(
-  //         cartItems.map((x) =>
-  //           x._id === product._id ? { ...exist, qty: exist.qty + 1 } : x
-  //         )
-  //       );
-  //     } else {
-  //       setCartItems([...cartItems, { ...product, qty: 1 }]);
-  //     }
-  //     console.log(cartItems);
-  //   };
+  const textInput = React.createRef();
 
   useEffect(() => {
     UserService.getPublicContent().then(
       (response) => {
         setContent(response.data.data.data);
         setGlobalContent(response.data.data.data)
-        // console.log(response.data.data.data);
       },
       (error) => {
         const _content =
@@ -47,48 +27,42 @@ const Home = () => {
       }
     );
   }, []);
+
   const resetProducts = () => {
     setContent(globalContent);
   };
 
   const handleSearch = (event) => {
-    const value = event.target.value.toLowerCase();
     let result = [];
-
-    result = content.filter((data) => data.title.search(value) !== -1);
+    result = content.filter((data) => data.title.search(textInput.current.value) !== -1);
     setContent(result);
     console.log(result);
   };
 
   const handleBedroomCategory = () => {
-    resetProducts();
     let result = [];
-
-    result = content.filter((data) => data.category.search("Bedroom") !== -1);
+    result = globalContent.filter((data) => data.category.search("Bedroom") !== -1);
     setContent(result);
     console.log(result)
   }
 
   const handleStudyCategory = () => {
-    resetProducts();
     let result = [];
-    result = content.filter((data) => data.category.search("study") !== -1);
+    result = globalContent.filter((data) => data.category.search("study") !== -1);
     setContent(result);
     console.log(result)
   }
 
   const handleLivingCategory = () => {
-    resetProducts();
     let result = [];
-    result = content.filter((data) => data.category.search("Living") !== -1);
+    result = globalContent.filter((data) => data.category.search("Living") !== -1);
     setContent(result);
     console.log(result)
   }
 
   const handleKitchenCategory = () => {
-    resetProducts();
     let result = [];
-    result = content.filter((data) => data.category.search("kitchen") !== -1);
+    result = globalContent.filter((data) => data.category.search("kitchen") !== -1);
     setContent(result);
     console.log(result)
   }
@@ -105,6 +79,7 @@ const Home = () => {
                 <Form.Group className="mb-3" controlId="search">
                   <Form.Label>Search</Form.Label>
                   <Form.Control
+                    ref={textInput}
                     type="search"
                     placeholder="Search"
                   />
@@ -116,7 +91,7 @@ const Home = () => {
                   Dropdown Button
                 </Dropdown.Toggle>
 
-                <Dropdown.Menu>
+                <Dropdown.Menu onChange={(event) => resetProducts(event)}>
                   <Dropdown.Item onClick={(event) => handleBedroomCategory(event)}>Bedroom</Dropdown.Item>
                   <Dropdown.Item onClick={(event) => handleLivingCategory(event)}>Living</Dropdown.Item>
                   <Dropdown.Item onClick={(event) => handleKitchenCategory(event)}>Kitchen</Dropdown.Item>
