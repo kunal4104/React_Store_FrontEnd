@@ -63,6 +63,8 @@ const Home = () => {
     UserService.getPublicContent(page, target.name).then(
       (response) => {
         // eslint-disable-next-line no-undef
+        const element = document.getElementById('next');
+        element.classList.remove('disabled');
         setContent(response.data.data.data);
       },
       (error) => {
