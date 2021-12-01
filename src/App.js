@@ -16,6 +16,7 @@ import Cart from './components/Cart';
 import { CartContext } from './components/CartContext';
 import ProductDetail from './components/ProductDetail';
 import CreateProduct from './components/Admin/CreateProduct';
+import Checkout from './components/Checkout';
 
 const App = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
@@ -68,8 +69,8 @@ const App = () => {
 
           {currentUser && (
             <li className="nav-item">
-              <Link to="/user" className="nav-link">
-                User
+              <Link to="/orders" className="nav-link">
+                My Orders
               </Link>
             </li>
           )}
@@ -120,6 +121,7 @@ const App = () => {
           <Route exact path="/profile" component={Profile} />
           <Route path="/user" component={BoardUser} />
           <Route path="/cart" component={Cart} />
+          <Route path="/checkout" component={Checkout} />
           <Route path="/product/:id" component={ProductDetail} />
           {showAdminBoard && [
             <Route
@@ -137,6 +139,22 @@ const App = () => {
         </Switch>
         {/* <Route path="/mod" component={BoardModerator} /> */}
       </div>
+      <footer
+        className="text-center text-white"
+        style={{ backgroundColor: '#21081a', marginTop: '5vh' }}
+      >
+        <div className="container p-4" />
+
+        <div
+          className="text-center p-3"
+          style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}
+        >
+          © 2020 Copyright:
+          <Link to="/" className="text-white">
+            Furniture Local.
+          </Link>
+        </div>
+      </footer>
     </div>
   );
 };
