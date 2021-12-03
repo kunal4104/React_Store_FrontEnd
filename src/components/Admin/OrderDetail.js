@@ -157,7 +157,7 @@ const OrderDetail = (props) => {
           </div>
           <div className="col-md-4 mb-4">
             <h4 className="d-flex justify-content-between align-items-center mb-3">
-              <span className="text-muted">Your cart</span>
+              <span className="text-muted">Order items</span>
               <span className="badge badge-secondary badge-pill">
                 {/* {order.items.length} */}
               </span>
