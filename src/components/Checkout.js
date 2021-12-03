@@ -9,13 +9,55 @@ export default function Checkout() {
   const [cart] = useContext(CartContext);
   const [country, setCountry] = useState('');
   const [region, setRegion] = useState('');
+  const [isShowingAlert, setShowingAlert] = React.useState(false);
+
+  const [address, setAddress] = useState({
+    firstName: '',
+    lastName: '',
+    address: '',
+    country: '',
+    state: '',
+    zip: '',
+  });
 
   const selectCountry = (val) => {
     setCountry(val);
+    setAddress({ ...address, country: val });
   };
 
   const selectRegion = (val) => {
     setRegion(val);
+    setAddress({ ...address, state: val });
+  };
+
+  const handleChange = (event) => {
+    const { target } = event;
+    const { name } = target;
+    const { value } = target;
+    setAddress({ ...address, [name]: value });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (
+      address.firstName === '' ||
+      address.lastName === '' ||
+      address.address === '' ||
+      address.country === '' ||
+      address.state === '' ||
+      address.zip === ''
+    ) {
+      setShowingAlert(true);
+      setTimeout(() => {
+        setShowingAlert(false);
+      }, 300);
+    }
+    // firstName: '',
+    // lastName: '',
+    // address: '',
+    // country: '',
+    // state: '',
+    // zip: '',
   };
 
   let cartTotal = 0;
@@ -49,6 +91,14 @@ export default function Checkout() {
                     <b>Shipping Address</b>
                   </u>
                 </div>
+                <div
+                  className={`alert alert-danger ${
+                    isShowingAlert ? 'alert-shown' : 'alert-hidden'
+                  }`}
+                  onTransitionEnd={() => setShowingAlert(false)}
+                >
+                  All fields are <strong>Required!</strong>
+                </div>
                 <div className="row">
                   <div className="col-md-6">
                     <div className="md-form ">
@@ -57,8 +107,11 @@ export default function Checkout() {
                         <input
                           type="text"
                           id="firstName"
+                          name="firstName"
                           className="form-control"
                           placeholder="First Name"
+                          onChange={handleChange}
+                          required
                         />
                       </label>
                     </div>
@@ -70,8 +123,11 @@ export default function Checkout() {
                         <input
                           type="text"
                           id="lastName"
+                          name="lastName"
                           className="form-control"
                           placeholder="Last Name"
+                          onChange={handleChange}
+                          required
                         />
                       </label>
                     </div>
@@ -83,8 +139,11 @@ export default function Checkout() {
                     <input
                       type="text"
                       id="address"
+                      name="address"
                       className="form-control"
                       placeholder="Address"
+                      onChange={handleChange}
+                      required
                     />
                   </label>
                 </div>
@@ -95,6 +154,7 @@ export default function Checkout() {
                       <CountryDropdown
                         value={country}
                         onChange={(val) => selectCountry(val)}
+                        required
                       />
                       {/* <select
                         className="custom-select d-block w-100"
@@ -116,6 +176,7 @@ export default function Checkout() {
                         country={country}
                         value={region}
                         onChange={(val) => selectRegion(val)}
+                        required
                       />
                       {/* <select
                         className="custom-select d-block w-100"
@@ -140,6 +201,7 @@ export default function Checkout() {
                         id="zip"
                         placeholder="Zip Code"
                         required
+                        onChange={handleChange}
                       />
                     </label>
                     <div className="invalid-feedback">Zip code required.</div>
@@ -150,11 +212,12 @@ export default function Checkout() {
                   <button
                     className="btn btn-primary btn-lg btn-block"
                     type="submit"
+                    onClick={handleSubmit}
                   >
                     Continue to checkout
                   </button>
                 ) : (
-                  <></>
+                  <span>Cart is Empty!</span>
                 )}
               </form>
             </div>

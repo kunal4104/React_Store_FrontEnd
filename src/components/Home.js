@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
@@ -78,6 +79,11 @@ const Home = () => {
     );
   };
 
+  const closeModal = () => {
+    const modal = document.getElementById('myModal');
+    modal.style.display = 'none';
+  };
+
   return (
     <section className="section-products">
       <ProductStyle />
@@ -144,6 +150,13 @@ const Home = () => {
           {content.map((product) => (
             <Product key={product._id} product={product} />
           ))}
+        </div>
+        <div id="myModal" className="modal">
+          <span className="close" onClick={closeModal} aria-hidden="true">
+            &times;
+          </span>
+          <img className="modal-content" id="img01" alt="" />
+          <div id="caption" />
         </div>
       </div>
       <nav aria-label="...">
