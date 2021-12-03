@@ -1,11 +1,14 @@
+/* eslint-disable react/prop-types */
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import { CartContext } from './CartContext';
+import authService from '../services/auth.service';
+import checkoutService from '../services/checkout.service';
 
 // import CartItem from './CartItem';
 
-export default function Checkout() {
+export default function Checkout(props) {
   const [cart] = useContext(CartContext);
   const [country, setCountry] = useState('');
   const [region, setRegion] = useState('');
@@ -14,11 +17,16 @@ export default function Checkout() {
   const [address, setAddress] = useState({
     firstName: '',
     lastName: '',
-    address: '',
+    street: '',
     country: '',
     state: '',
     zip: '',
   });
+
+  let cartTotal = 0;
+  for (let i = 0; i < cart.length; i += 1) {
+    cartTotal += cart[i].total;
+  }
 
   const selectCountry = (val) => {
     setCountry(val);
@@ -42,7 +50,7 @@ export default function Checkout() {
     if (
       address.firstName === '' ||
       address.lastName === '' ||
-      address.address === '' ||
+      address.street === '' ||
       address.country === '' ||
       address.state === '' ||
       address.zip === ''
@@ -51,19 +59,56 @@ export default function Checkout() {
       setTimeout(() => {
         setShowingAlert(false);
       }, 300);
+    } else {
+      // eslint-disable-next-line no-undef
+      const { user } = authService.getCurrentUser();
+
+      console.log(...cart);
+      const data = {
+        user: user._id,
+        total: cartTotal * 100,
+        quantity: cart.length,
+        items: cart,
+        address: {
+          firstName: address.firstName,
+          lastName: address.lastName,
+          street: address.street,
+          pin: address.zip,
+          state: address.state,
+          country: address.country,
+        },
+      };
+
+      console.log(data);
+      console.log(props);
+      return checkoutService.createOrder(data).then(
+        () => {
+          // eslint-disable-next-line react/destructuring-assignment
+          props.history.push('/orders');
+          // eslint-disable-next-line no-undef
+          window.location.reload();
+        },
+        (error) => {
+          const resMessage =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+          console.log(resMessage);
+          //   setLoading(false);
+          //   setMessage(resMessage);
+        }
+      );
     }
-    // firstName: '',
-    // lastName: '',
-    // address: '',
-    // country: '',
-    // state: '',
-    // zip: '',
   };
 
-  let cartTotal = 0;
+  const sent = [];
   for (let i = 0; i < cart.length; i += 1) {
-    cartTotal += cart[i].total;
+    sent.push(cart[i]);
   }
+  console.log(sent);
 
   const cartItem = (id, name, quantity, price) => (
     <li
@@ -139,7 +184,7 @@ export default function Checkout() {
                     <input
                       type="text"
                       id="address"
-                      name="address"
+                      name="street"
                       className="form-control"
                       placeholder="Address"
                       onChange={handleChange}

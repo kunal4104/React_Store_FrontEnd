@@ -39,11 +39,6 @@ const Login = (props) => {
     setPassword(pword);
   };
 
-  //   const onChangePasswordConfirm = (e) => {
-  //     const pcword = e.target.value;
-  //     setPasswordConfirm(pcword);
-  //   };
-
   const handleLogin = (e) => {
     e.preventDefault();
 

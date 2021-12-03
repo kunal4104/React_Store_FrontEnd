@@ -17,6 +17,7 @@ import { CartContext } from './components/CartContext';
 import ProductDetail from './components/ProductDetail';
 import CreateProduct from './components/Admin/CreateProduct';
 import Checkout from './components/Checkout';
+import MyOrders from './components/MyOrders';
 
 const App = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
@@ -123,6 +124,9 @@ const App = () => {
           <Route path="/cart" component={Cart} />
           <Route path="/checkout" component={Checkout} />
           <Route path="/product/:id" component={ProductDetail} />
+          {currentUser && [
+            <Route key="my_orders" path="/orders" component={MyOrders} />,
+          ]}
           {showAdminBoard && [
             <Route
               key="edit"
