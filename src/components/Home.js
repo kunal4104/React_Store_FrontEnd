@@ -12,6 +12,36 @@ const Home = () => {
   const [content, setContent] = useState([]);
   const [page, setPage] = useState(1);
   const [filter, setFilter] = useState('All');
+  const [textBoxVal, setTextBoxVal] = useState([]);
+
+  const handleChange = (e) => {
+    setTextBoxVal({ value: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    UserService.getPublicContent(page, filter).then(
+      (response) => {
+        // eslint-disable-next-line no-undef
+        const element = document.getElementById('next');
+        element.classList.remove('disabled');
+        setContent(response.data.data.data.filter(
+          (data) => data.title.search(textBoxVal.value) !== -1
+        ));
+      },
+      (error) => {
+        const _content =
+          (error.response && error.response.data) ||
+          error.message ||
+          error.toString();
+
+        setContent(_content);
+      }
+
+    );
+
+  };
+
 
   useEffect(() => {
     UserService.getPublicContent(page).then(
@@ -143,6 +173,20 @@ const Home = () => {
                   </Dropdown.Item> */}
                 </Dropdown.Menu>
               </Dropdown>
+
+              <form onSubmit={(event) => handleSubmit(event)}>
+                <label htmlFor="search">
+                  Search item:
+                  <input
+                    id="search"
+                    type="text"
+                    placeholder="search"
+                    onChange={(event) => handleChange(event)}
+                  />
+                </label>
+                <input type="submit" value="Submit" />
+              </form>
+
             </div>
           </div>
         </div>
