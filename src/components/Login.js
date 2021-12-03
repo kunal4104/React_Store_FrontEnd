@@ -39,11 +39,6 @@ const Login = (props) => {
     setPassword(pword);
   };
 
-  //   const onChangePasswordConfirm = (e) => {
-  //     const pcword = e.target.value;
-  //     setPasswordConfirm(pcword);
-  //   };
-
   const handleLogin = (e) => {
     e.preventDefault();
 
@@ -55,8 +50,14 @@ const Login = (props) => {
     if (checkBtn.current.context._errors.length === 0) {
       AuthService.login(username, password).then(
         () => {
-          // eslint-disable-next-line react/destructuring-assignment
-          props.history.push('/profile');
+          const { user } = AuthService.getCurrentUser();
+          if (user.role === 'admin') {
+            // eslint-disable-next-line react/destructuring-assignment
+            props.history.push('/admin');
+          } else {
+            // eslint-disable-next-line react/destructuring-assignment
+            props.history.push('/home');
+          }
           window.location.reload();
         },
         (error) => {

@@ -72,71 +72,70 @@ label {
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 
 body {
-    font-family: "Poppins", sans-serif;
-    color: #444444;
+  font-family: 'Poppins', sans-serif;
+  color: #444444;
 }
 
 a,
 a:hover {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
 .section-products {
-    padding: 80px 0 54px;
+  padding: 80px 0 54px;
 }
 
 .section-products .header {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
 }
 
 .section-products .header h3 {
-    font-size: 1rem;
-    color: #fe302f;
-    font-weight: 500;
+  font-size: 1rem;
+  color: #fe302f;
+  font-weight: 500;
 }
 
 .section-products .header h2 {
-    font-size: 2.2rem;
-    font-weight: 400;
-    color: #444444; 
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: #444444;
 }
 
 .section-products .single-product {
-    margin-bottom: 26px;
+  margin-bottom: 26px;
 }
 
 .section-products .single-product .part-1 {
-    position: relative;
-    height: 290px;
-    max-height: 290px;
-    margin-bottom: 20px;
-    overflow: hidden;
+  position: relative;
+  height: 290px;
+  max-height: 290px;
+  margin-bottom: 20px;
+  overflow: hidden;
 }
 
 .section-products .single-product .part-1::before {
-		position: absolute;
-		content: "";
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: -1;
-		transition: all 0.3s;
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  transition: all 0.3s;
 }
 
 .section-products .single-product:hover .part-1::before {
-		transform: scale(1.2,1.2);
+  transform: scale(1.2, 1.2);
 }
 
-
 /* .section-products .part-1::before { */
-    /* background: url("http://localhost:3000/img/product/default.jpg") no-repeat center; */
-    /* background: attr(img-src) "%" no-repeat center; */
-    /* background-size: cover; */
-		/* transition: all 0.3s; */
+/* background: url("http://localhost:3000/img/product/default.jpg") no-repeat center; */
+/* background: attr(img-src) "%" no-repeat center; */
+/* background-size: cover; */
+/* transition: all 0.3s; */
 /* }  */
- /* .section-products #product-2 .part-1::before {
+/* .section-products #product-2 .part-1::before {
     background: url("https://i.ibb.co/clnzjns/2.jpg") no-repeat center;
     background-size: cover;
 } 
@@ -153,93 +152,125 @@ a:hover {
 
 .section-products .single-product .part-1 .discount,
 .section-products .single-product .part-1 .new {
-    position: absolute;
-    top: 15px;
-    left: 20px;
-    color: #ffffff;
-    background-color: #fe302f;
-    padding: 2px 8px;
-    text-transform: uppercase;
-    font-size: 0.85rem;
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  color: #ffffff;
+  background-color: #fe302f;
+  padding: 2px 8px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
 }
 
 .section-products .single-product .part-1 .new {
-    left: 0;
-    background-color: #444444;
+  left: 0;
+  background-color: #444444;
 }
 
 .section-products .single-product .part-1 ul {
-    position: absolute;
-    bottom: -41px;
-    left: 20px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    opacity: 0;
-    transition: bottom 0.5s, opacity 0.5s;
+  position: absolute;
+  bottom: -41px;
+  left: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  opacity: 0;
+  transition: bottom 0.5s, opacity 0.5s;
 }
 
 .section-products .single-product:hover .part-1 ul {
-    bottom: 30px;
-    opacity: 1;
+  bottom: 30px;
+  opacity: 1;
 }
 
 .section-products .single-product .part-1 ul li {
-    display: inline-block;
-    margin-right: 4px;
+  display: inline-block;
+  margin-right: 4px;
 }
 
 .section-products .single-product .part-1 ul li a {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    background-color: #ffffff;
-    color: #444444;
-    text-align: center;
-    box-shadow: 0 2px 20px rgb(50 50 50 / 10%);
-    transition: color 0.2s;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #ffffff;
+  color: #444444;
+  text-align: center;
+  box-shadow: 0 2px 20px rgb(50 50 50 / 10%);
+  transition: color 0.2s;
 }
 
 .section-products .single-product .part-1 ul li a:hover {
-    color: #fe302f;
+  color: #fe302f;
 }
 
 .section-products .single-product .part-2 .product-title {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 .section-products .single-product .part-2 h4 {
-    display: inline-block;
-    font-size: 1rem;
+  display: inline-block;
+  font-size: 1rem;
 }
 
 .section-products .single-product .part-2 .product-old-price {
-    position: relative;
-    padding: 0 7px;
-    margin-right: 2px;
-    opacity: 0.6;
+  position: relative;
+  padding: 0 7px;
+  margin-right: 2px;
+  opacity: 0.6;
 }
 
 .section-products .single-product .part-2 .product-old-price::after {
-    position: absolute;
-    content: "";
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: #444444;
-    transform: translateY(-50%);
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #444444;
+  transform: translateY(-50%);
 }
 
+.product-img {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
+.product-img:hover {
+  opacity: 0.9;
+  transform: scale(1.1);
+}
 
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+}
+
+.added-cart {
+  opacity: 0.7;
+}
+
+.alert-hidden {
+  opacity: 0;
+  transition: all 250ms linear 2s;
+}
 
 /*
 
 */
 .title {
-  margin-bottom: 5vh
+  margin-bottom: 5vh;
 }
 
 .card {
@@ -248,12 +279,84 @@ a:hover {
   width: 90%;
   box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 1rem;
-  border: transparent
+  border: transparent;
 }
 
-@media(max-width:767px) {
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content,
+#caption {
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {
+    -webkit-transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px) {
+  .modal-content {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
   .card {
-      margin: 3vh auto
+    margin: 3vh auto;
   }
 }
 
@@ -261,14 +364,14 @@ a:hover {
   background-color: #fff;
   padding: 4vh 5vh;
   border-bottom-left-radius: 1rem;
-  border-top-left-radius: 1rem
+  border-top-left-radius: 1rem;
 }
 
-@media(max-width:767px) {
+@media (max-width: 767px) {
   .cart {
-      padding: 4vh;
-      border-bottom-left-radius: unset;
-      border-top-right-radius: 1rem
+    padding: 4vh;
+    border-bottom-left-radius: unset;
+    border-top-right-radius: 1rem;
   }
 }
 
@@ -277,70 +380,70 @@ a:hover {
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
   padding: 4vh;
-  color: rgb(65, 65, 65)
+  color: rgb(65, 65, 65);
 }
 
-@media(max-width:767px) {
+@media (max-width: 767px) {
   .summary {
-      border-top-right-radius: unset;
-      border-bottom-left-radius: 1rem
+    border-top-right-radius: unset;
+    border-bottom-left-radius: 1rem;
   }
 }
 
 .summary .col-2 {
-  padding: 0
+  padding: 0;
 }
 
 .summary .col-10 {
-  padding: 0
+  padding: 0;
 }
 
 .row {
-  margin: 0
+  margin: 0;
 }
 
 .title b {
-  font-size: 1.5rem
+  font-size: 1.5rem;
 }
 
 .main {
   margin: 0;
   padding: 2vh 0;
-  width: 100%
+  width: 100%;
 }
 
 .col-2,
 .col {
-  padding: 0 1vh
+  padding: 0 1vh;
 }
 
 a {
-  padding: 0 1vh
+  padding: 0 1vh;
 }
 
 .close {
   margin-left: auto;
-  font-size: 0.7rem
+  font-size: 0.7rem;
 }
 
 img {
-  width: 3.5rem
+  width: 3.5rem;
 }
 
 .back-to-shop {
-  margin-top: 4.5rem
+  margin-top: 4.5rem;
 }
 
 h5 {
-  margin-top: 4vh
+  margin-top: 4vh;
 }
 
 hr {
-  margin-top: 1.25rem
+  margin-top: 1.25rem;
 }
 
 form {
-  padding: 2vh 0
+  padding: 2vh 0;
 }
 
 select {
@@ -349,7 +452,7 @@ select {
   margin-bottom: 4vh;
   outline: none;
   width: 100%;
-  background-color: rgb(247, 247, 247)
+  background-color: rgb(247, 247, 247);
 }
 
 input {
@@ -358,11 +461,11 @@ input {
   margin-bottom: 4vh;
   outline: none;
   width: 100%;
-  background-color: rgb(247, 247, 247)
+  background-color: rgb(247, 247, 247);
 }
 
 input:focus::-webkit-input-placeholder {
-  color: transparent
+  color: transparent;
 }
 
 .btn {
@@ -373,7 +476,7 @@ input:focus::-webkit-input-placeholder {
   font-size: 0.7rem;
   margin-top: 4vh;
   padding: 1vh;
-  border-radius: 0
+  border-radius: 0;
 }
 
 .btn:focus {
@@ -383,25 +486,30 @@ input:focus::-webkit-input-placeholder {
   color: white;
   -webkit-box-shadow: none;
   -webkit-user-select: none;
-  transition: none
+  transition: none;
 }
 
 .btn:hover {
-  color: white
+  color: white;
 }
 
 a {
-  color: black
+  color: black;
 }
 
 a:hover {
   color: black;
-  text-decoration: none
+  text-decoration: none;
 }
 
 #code {
-  background-image: linear-gradient(to left, rgba(255, 255, 255, 0.253), rgba(255, 255, 255, 0.185)), url("https://img.icons8.com/small/16/000000/long-arrow-right.png");
+  background-image: linear-gradient(
+      to left,
+      rgba(255, 255, 255, 0.253),
+      rgba(255, 255, 255, 0.185)
+    ),
+    url('https://img.icons8.com/small/16/000000/long-arrow-right.png');
   background-repeat: no-repeat;
   background-position-x: 95%;
-  background-position-y: center
+  background-position-y: center;
 }
