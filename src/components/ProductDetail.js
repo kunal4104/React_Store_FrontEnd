@@ -30,6 +30,10 @@ const ProductDetail = (props) => {
   const runOnAdd = (item) => {
     CartServices.onAdd(cart, setCart, item);
   };
+  const handleBuyNow = (item) => {
+    CartServices.onAdd(cart, setCart, item);
+    props.history.push('/cart');
+  };
 
   const runOnRemove = (item) => {
     CartServices.onRemove(cart, setCart, item);
@@ -63,6 +67,7 @@ const ProductDetail = (props) => {
           <div className="view zoom z-depth-2 rounded">
             <img
               className="img-fluid w-100"
+              style={{ borderRadius: '0.5em' }}
               src={`http://localhost:3000/img/product/${Product.photo}`}
               alt="Sample"
             />
@@ -106,16 +111,17 @@ const ProductDetail = (props) => {
               </tbody>
             </table>
           </div>
-          <hr />
           <div className="table-responsive mb-2">
             <table className="table table-sm table-borderless">
-              <tbody>
+              <tbody className="d-flex">
                 <tr>
-                  <td className="pl-0 pb-0 w-25">Quantity</td>
+                  <td className="pl-0 pb-0 w-25">
+                    <b>Add to Cart</b>
+                  </td>
                 </tr>
-                <tr>
-                  <td className="pl-0">
-                    <div className="col">
+                <tr className="ml-5">
+                  <td className="pl-0 inline-block">
+                    <div className="">
                       <button
                         type="button"
                         onClick={() => runOnRemove(Product)}
@@ -139,15 +145,10 @@ const ProductDetail = (props) => {
           <button
             type="button"
             className="btn btn-primary btn-md mr-1 mb-2 waves-effect waves-light"
-          >
-            Buy now
-          </button>
-          <button
-            type="button"
-            className="btn btn-light btn-md mr-1 mb-2 waves-effect waves-light"
+            onClick={() => handleBuyNow(Product)}
           >
             <i className="fas fa-shopping-cart pr-2" />
-            Add to cart
+            Buy now
           </button>
         </div>
       </div>

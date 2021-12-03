@@ -18,9 +18,11 @@ import ProductDetail from './components/ProductDetail';
 import CreateProduct from './components/Admin/CreateProduct';
 import Checkout from './components/Checkout';
 import MyOrders from './components/MyOrders';
+import Orders from './components/Admin/Orders';
+import OrderDetail from './components/Admin/OrderDetail';
 
 const App = () => {
-  const [showModeratorBoard, setShowModeratorBoard] = useState(false);
+  // const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
 
@@ -31,7 +33,7 @@ const App = () => {
 
     if (user) {
       setCurrentUser(user);
-      setShowModeratorBoard(user.role === 'moderator');
+      // setShowModeratorBoard(user.role === 'moderator');
       setShowAdminBoard(user.user.role === 'admin');
     }
   }, []);
@@ -47,28 +49,36 @@ const App = () => {
           Furniture local
         </Link>
         <div className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <Link to="/home" className="nav-link">
-              Home
-            </Link>
-          </li>
-
-          {showModeratorBoard && (
+          {!showAdminBoard && (
+            <li className="nav-item">
+              <Link to="/home" className="nav-link">
+                Home
+              </Link>
+            </li>
+          )}
+          {/* {showModeratorBoard && (
             <li className="nav-item">
               <Link to="/mod" className="nav-link">
                 Moderator Board
               </Link>
             </li>
-          )}
+          )} */}
           {showAdminBoard && (
-            <li className="nav-item">
-              <Link to="/admin" className="nav-link">
-                Admin Board
-              </Link>
-            </li>
+            <>
+              <li className="nav-item">
+                <Link to="/admin" className="nav-link">
+                  Admin Board
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/admin/orders" className="nav-link">
+                  Orders
+                </Link>
+              </li>
+            </>
           )}
 
-          {currentUser && (
+          {currentUser && !showAdminBoard && (
             <li className="nav-item">
               <Link to="/orders" className="nav-link">
                 My Orders
@@ -79,11 +89,11 @@ const App = () => {
 
         {currentUser ? (
           <div className="navbar-nav ml-auto">
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link to="/profile" className="nav-link">
                 {currentUser.username}
               </Link>
-            </li>
+            </li> */}
             {!showAdminBoard && (
               <li className="nav-item">
                 <Link to="/cart" className="nav-link">
@@ -124,6 +134,7 @@ const App = () => {
           <Route path="/cart" component={Cart} />
           <Route path="/checkout" component={Checkout} />
           <Route path="/product/:id" component={ProductDetail} />
+          <Route path="/admin/order/:id" component={OrderDetail} />
           {currentUser && [
             <Route key="my_orders" path="/orders" component={MyOrders} />,
           ]}
@@ -132,6 +143,12 @@ const App = () => {
               key="edit"
               path="/edit/product/:id"
               component={EditProduct}
+            />,
+            <Route key="order" path="/admin/orders" component={Orders} />,
+            <Route
+              key="orderDetail"
+              path="/admin/order/:id"
+              component={OrderDetail}
             />,
             <Route
               key="edit"

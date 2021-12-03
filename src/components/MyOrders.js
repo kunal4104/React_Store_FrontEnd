@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import authService from '../services/auth.service';
-import checkoutService from '../services/checkout.service';
+import checkoutService from '../services/order.service';
 
 export default function MyOrders() {
   const [orders, setOrders] = useState([]);
@@ -61,6 +61,9 @@ export default function MyOrders() {
                 <div>
                   <div className="d-flex flex-column ml-5">
                     <span>ORDER #{order._id}</span>
+                    <span>
+                      Status: <b>{order.status}</b>
+                    </span>
                   </div>
                 </div>
               </div>

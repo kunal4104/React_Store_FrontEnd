@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import { CartContext } from './CartContext';
 import authService from '../services/auth.service';
-import checkoutService from '../services/checkout.service';
+import checkoutService from '../services/order.service';
 
 // import CartItem from './CartItem';
 
@@ -178,7 +178,7 @@ export default function Checkout(props) {
                     </div>
                   </div>
                 </div>
-                <div className="md-form">
+                <div className="md-form ml-3">
                   <label htmlFor="address" className="">
                     Address
                     <input
@@ -285,28 +285,6 @@ export default function Checkout(props) {
               {cart.map((el) =>
                 cartItem(el._id, el.title, el.qty, (el.price / 100).toFixed(2))
               )}
-              {/* <li className="list-group-item d-flex justify-content-between lh-condensed">
-                <div>
-                  <h6 className="my-0">Product name</h6>
-                  <small className="text-muted">Brief description</small>
-                </div>
-                <span className="text-muted">$12</span>
-              </li>
-              <li className="list-group-item d-flex justify-content-between lh-condensed">
-                <div>
-                  <h6 className="my-0">Second product</h6>
-                  <small className="text-muted">Brief description</small>
-                </div>
-                <span className="text-muted">$8</span>
-              </li>
-              <li className="list-group-item d-flex justify-content-between lh-condensed">
-                <div>
-                  <h6 className="my-0">Third item</h6>
-                  <small className="text-muted">Brief description</small>
-                </div>
-                <span className="text-muted">$5</span>
-              </li> */}
-
               <li className="list-group-item d-flex justify-content-between">
                 <span>Total (USD)</span>
                 <strong>${cartTotal}</strong>
