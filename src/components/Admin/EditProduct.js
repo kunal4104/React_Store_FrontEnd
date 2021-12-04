@@ -193,12 +193,6 @@ const EditProduct = (props) => {
               </table>
             </div>
             <hr />
-            <Link
-              to="/admin"
-              className="btn btn-primary btn-md mr-1 mb-2 waves-effect waves-light"
-            >
-              Cancel
-            </Link>
             <button
               type="submit"
               className="btn btn-light btn-md mr-1 mb-2 waves-effect waves-light"
@@ -206,6 +200,12 @@ const EditProduct = (props) => {
               <i className="fas fa-save pr-2" />
               Save
             </button>
+            <Link
+              to="/admin"
+              className="btn btn-primary btn-md mr-1 mb-2 waves-effect waves-light"
+            >
+              Cancel
+            </Link>
           </div>
         </div>
       </section>

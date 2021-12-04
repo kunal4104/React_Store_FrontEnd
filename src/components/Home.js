@@ -120,16 +120,7 @@ const Home = () => {
         <div className="row justify-content-center text-center">
           <div className="col-md-8 col-lg-6">
             <div className="header">
-              {/* <Form>
-                <Form.Group className="mb-3" controlId="search">
-                  <Form.Label>Search</Form.Label>
-                  <Form.Control type="search" placeholder="Search" />
-                  <Button onClick={(event) => handleSearch(event)}>
-                    Search
-                  </Button>
-                </Form.Group>
-              </Form> */}
-              <h3>Featured Product</h3>
+              <h3>Furniture Local</h3>
               <h2>Popular Products</h2>
               <div className="input-group">
                 <input
@@ -185,9 +176,6 @@ const Home = () => {
                   >
                     Study
                   </Dropdown.Item>
-                  {/* <Dropdown.Item onClick={(event) => resetProducts(event)}>
-                    All
-                  </Dropdown.Item> */}
                 </Dropdown.Menu>
               </Dropdown>
             </div>
@@ -225,16 +213,6 @@ const Home = () => {
               {page}
             </a>
           </li>
-          {/* <li className="page-item active">
-            <a className="page-link" href="#">
-              2 <span className="sr-only">(current)</span>
-            </a>
-          </li>
-          <li className="page-item">
-            <a className="page-link" href="#">
-              3
-            </a>
-          </li> */}
           <li id="next" className="page-item">
             <button
               type="button"

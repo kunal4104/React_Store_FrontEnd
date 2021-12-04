@@ -106,7 +106,7 @@ const Register = (props) => {
         (response) => {
           setMessage(response.data.message);
           setSuccessful(true);
-          props.history.push('/profile');
+          props.history.push('/home');
           window.location.reload();
         },
         (error) => {
