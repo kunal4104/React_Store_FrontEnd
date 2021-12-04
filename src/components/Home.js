@@ -174,6 +174,7 @@ const Home = () => {
                 </Dropdown.Menu>
               </Dropdown>
 
+
               <form onSubmit={(event) => handleSubmit(event)}>
                 <label htmlFor="search">
                   Search item:
