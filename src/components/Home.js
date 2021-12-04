@@ -12,6 +12,35 @@ const Home = () => {
   const [content, setContent] = useState([]);
   const [page, setPage] = useState(1);
   const [filter, setFilter] = useState('All');
+  const [textBoxVal, setTextBoxVal] = useState([]);
+
+  const handleChange = (e) => {
+    setTextBoxVal({ value: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    UserService.getPublicContent(page, filter).then(
+      (response) => {
+        // eslint-disable-next-line no-undef
+        const element = document.getElementById('next');
+        element.classList.remove('disabled');
+        setContent(
+          response.data.data.data.filter(
+            (data) => data.title.search(textBoxVal.value) !== -1
+          )
+        );
+      },
+      (error) => {
+        const _content =
+          (error.response && error.response.data) ||
+          error.message ||
+          error.toString();
+
+        setContent(_content);
+      }
+    );
+  };
 
   useEffect(() => {
     UserService.getPublicContent(page).then(
@@ -102,6 +131,24 @@ const Home = () => {
               </Form> */}
               <h3>Featured Product</h3>
               <h2>Popular Products</h2>
+              <div className="input-group">
+                <input
+                  id="search"
+                  type="text"
+                  placeholder="search"
+                  onChange={(event) => handleChange(event)}
+                  className="form-control py-2"
+                />
+                <span className="input-group-append">
+                  <button
+                    className="btn btn-outline-secondary m-2"
+                    type="button"
+                    onClick={handleSubmit}
+                  >
+                    <i className="fa fa-search" />
+                  </button>
+                </span>
+              </div>
               <Dropdown>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                   {filter}
