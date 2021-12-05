@@ -37,7 +37,7 @@ const Product = (props) => {
           className="part-1 product-img"
           style={{
             background: `url("http://localhost:3000/img/product/${product.photo}") no-repeat center`,
-            backgroundSize: 'cover',
+            backgroundSize: 'contain',
           }}
         >
           <div
