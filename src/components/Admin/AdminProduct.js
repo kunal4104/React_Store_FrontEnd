@@ -24,8 +24,10 @@ const AdminProduct = (props) => {
                 onClick={() => {
                   if (
                     window.confirm('Are you sure you wish to delete this item?')
-                  )
+                  ) {
                     adminService.deleteProduct(product._id);
+                    window.location.reload();
+                  }
                 }}
                 type="button"
                 aria-hidden="true"
