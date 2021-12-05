@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
+import { FaShoppingCart } from "react-icons/fa";
 import './bootstrap/css/bootstrap.min.css';
 import './App.css';
 
@@ -96,8 +97,12 @@ const App = () => {
             </li> */}
             {!showAdminBoard && (
               <li className="nav-item">
-                <Link to="/cart" className="nav-link">
+                {/* <Link to="/cart" className="nav-link">
                   Cart {cart.length}
+                </Link> */}
+                <Link to="/cart" className="nav-link">
+                  <FaShoppingCart color='white' size={42} />
+                  {cart.length}
                 </Link>
               </li>
             )}
