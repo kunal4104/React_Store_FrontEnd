@@ -15,7 +15,7 @@ const AdminProduct = (props) => {
           className="part-1"
           style={{
             background: `url("http://localhost:3000/img/product/${product.photo}") no-repeat center`,
-            backgroundSize: 'cover',
+            backgroundSize: 'contain',
           }}
         >
           <ul>
