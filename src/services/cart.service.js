@@ -1,4 +1,10 @@
+import AuthService from './auth.service';
+
 const onAdd = (cartItems, setCartItems, product) => {
+  if (!AuthService.getCurrentUser()) {
+    // eslint-disable-next-line no-undef
+    window.location.replace('http://localhost:3000/login');
+  }
   const exist = cartItems.find((x) => x._id === product._id);
   if (exist) {
     setCartItems(

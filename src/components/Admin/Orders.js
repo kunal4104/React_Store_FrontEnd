@@ -40,17 +40,18 @@ const Orders = () => {
           </tr>
         </thead>
         <tbody>
-          {orders.map((el) => (
-            <tr key={el._id}>
-              <th scope="row">#{el._id}</th>
-              <td>{`${el.address.firstName} ${el.address.lastName}`}</td>
-              <td>{el.status}</td>
-              <td>${(el.total / 100).toFixed(2)}</td>
-              <td>
-                <Link to={`/admin/order/${el._id}`}>order details</Link>
-              </td>
-            </tr>
-          ))}
+          {orders.length > 0 &&
+            orders.map((el) => (
+              <tr key={el._id}>
+                <th scope="row">#{el._id}</th>
+                <td>{`${el.address.firstName} ${el.address.lastName}`}</td>
+                <td>{el.status}</td>
+                <td>${(el.total / 100).toFixed(2)}</td>
+                <td>
+                  <Link to={`/admin/order/${el._id}`}>order details</Link>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>

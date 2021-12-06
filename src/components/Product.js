@@ -7,6 +7,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from './CartContext';
 import CartServices from '../services/cart.service';
+import authService from '../services/auth.service';
 
 const Product = (props) => {
   const { product } = props;
@@ -16,7 +17,8 @@ const Product = (props) => {
 
   const runOnAdd = (item) => {
     CartServices.onAdd(cartItems, setCartItems, item);
-    setShowingAlert(true);
+
+    if (authService.getCurrentUser()) setShowingAlert(true);
     setTimeout(() => {
       setShowingAlert(false);
     }, 100);
