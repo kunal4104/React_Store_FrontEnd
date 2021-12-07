@@ -13,7 +13,13 @@ const register = (username, email, password, passwordConfirm) =>
     .then((response) => {
       if (response.data.token) {
         // eslint-disable-next-line no-undef
-        localStorage.setItem('user', JSON.stringify(response.data.data));
+        localStorage.setItem(
+          'user',
+          JSON.stringify({
+            ...response.data.data,
+            token: response.data.token,
+          })
+        );
       }
 
       return response.data;

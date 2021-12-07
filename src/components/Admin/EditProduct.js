@@ -65,8 +65,6 @@ const EditProduct = (props) => {
     );
   };
 
-  //   const getPrice = (price) => price / parseFloat(100);
-
   const handleInputChange = (event) => {
     const { target } = event;
     const { name } = target;
